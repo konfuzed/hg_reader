@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ruleset name="super-linter">
+  <description>PHP CodeSniffer configuration for super-linter checking, instead of default PSR12.</description>
+
+  <rule ref="PSR12" />
+  <arg name="extensions" value="php,module,inc,install,test,profile,theme,css,info,txt,md,yml"/>
+  <config name="drupal_core_version" value="9"/>
+  <rule ref="Generic.Files.LineLength"> <!-- rule to override -->
+    <properties>
+      <property name="lineLimit" value="225"/> <!-- maximum line length -->
+    </properties>
+  </rule>
+
+</ruleset>
