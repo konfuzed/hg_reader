@@ -1,0 +1,41 @@
+{# HG Mercury News Template #}
+
+{# Attached Style Sheet #}
+{{ attach_library('hg_reader/hg_reader') }}
+
+{# Content #}
+
+{# Set Div Wrapper ID #}
+<div id="mercury" class="mercury row mb-5">
+
+    {# Set Main Container #}
+    <div class="col-md-12 col-sm-12">
+        <div class="my-2">
+            <div class="hg-title">
+                <a href="{{ path('entity.node.canonical', {'node': node.id}) }}"><h3>{{ node.title.value }}</h3></a>
+            </div>
+        </div>
+
+        {# Images #}
+        {% if content.field_hg_images|render is not empty %}
+            <div class="image">
+                <img src="{{ node.field_hg_images.0.entity.uri.value|image_style('large') }}" />
+            </div>
+        {% endif %}
+
+        {# Dateline #}
+        {% if content.field_hg_dateline|render is not empty or content.field_hg_location|render is not empty %}
+            <div class="dateline">
+                {{ node.field_hg_dateline.value|date('M d, Y') }} &mdash; {{ content.field_hg_location[0] }}
+            </div>
+        {% endif %}
+
+        {# Summary sentence #}
+        {% if content.field_hg_summary_sentence|render is not empty %}
+            <p>
+                {{ node.field_hg_summary_sentence.value }}
+            </p>
+        {% endif %}
+    </div>
+    {# End Main Container #}
+</div>

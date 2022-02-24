@@ -1,0 +1,308 @@
+<?php
+
+use Drupal\Core\Database\Database;
+use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
+use Symfony\Component\Yaml\Yaml;
+use Drupal\hg_reader\Entity\HgImporter;
+use Drupal\hg_reader\Controller\HgImporterController;
+use Drupal\Core\Datetime\DrupalDateTime;
+use \Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\Core\Datetime\DateFormatInterface;
+
+/**
+ * hg_reader_install
+ *
+ * Set fresh_install flag to true.
+ */
+function hg_reader_install() {
+  $config = \Drupal::service('config.factory')->getEditable('hg_reader.settings');
+  $config->set('fresh_install', TRUE)->save();
+}
+
+/**
+ * hg_reader_uninstall
+ *
+ * Delete hg_reader settings. This is a kludge because I can't figure out why
+ * the youtube field is not getting removed. 
+ */
+function hg_reader_uninstall() {
+  $modulePath = drupal_get_path('module', 'hg_reader');
+
+  $files = scandir($modulePath . '/config/install');
+
+  foreach ($files as $file) {
+      $components = explode(DIRECTORY_SEPARATOR, $file);
+      $config_name = str_replace('.yml', '', end($components));
+      $config = \Drupal::service('config.factory')->getEditable($config_name);
+      $config->delete();
+    }
+  $config = \Drupal::service('config.factory')->getEditable('field.storage.node.field_hg_youtube_video');
+  $config->delete();
+}
+
+/**
+ * hg_reader_schema
+ *
+ * @return array
+ */
+function hg_reader_schema() {
+  $schema['hg_reader_log'] = [
+    'description' => 'Stores log entries for Mercury Reader-created nodes.',
+    'fields' => [
+      'nid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Mercury node nid",
+      ],
+      'timestamp' => [
+        'description' => 'The Unix timestamp when the node was viewed.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ]
+  ];
+
+  return $schema;
+}
+
+/**
+ * hg_reader_requirements
+ *
+ * @param string $phase
+ * @return array
+ */
+function hg_reader_requirements($phase) {
+	$requirements = [];
+
+	// Checking `mercury_news` specifically becuase of hg_reader_update_8002
+	if ($phase == 'runtime' && \Drupal\node\Entity\NodeType::load('mercury_news') ) {
+		$requirements['hg_reader'] = [
+			'title' => t('Mercury Reader'),
+			'severity' => REQUIREMENT_ERROR,
+			'description' => t("Mercury Reader has <a href='@url'>outdated content types</a>. Please re-install Mercury Reader to install the proper content types.", array('@url' => "https://github.gatech.edu/ICWebTeam/hg_reader/issues/21" ))
+		];
+	}
+
+	return $requirements;
+}
+
+/**
+ * hg_reader_update_8001
+ *
+ * Create hg_reader_log table.
+ */
+function hg_reader_update_8001(&$sandbox) {
+  $spec = [
+    'description' => 'Stores log entries for Mercury Reader-created nodes.',
+    'fields' => [
+      'nid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Mercury node nid",
+      ],
+      'timestamp' => [
+        'description' => 'The Unix timestamp when the node was viewed.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ]
+  ];
+
+  $schema = Database::getConnection()->schema();
+  $schema->createTable('hg_reader_log', $spec);
+}
+
+/**
+ * hg_reader_update_8002
+ *
+ * Adds a YouTube field to the news node type.
+ */
+function hg_reader_update_8002() {
+  $message = NULL;
+
+  $entitytypes_fields = [
+    'node' => [
+      'hg_news' => [
+        'field_hg_youtube_video',
+      ],
+    ]
+  ];
+
+  _ensure_fields($entitytypes_fields);
+  return $message;
+}
+
+/**
+ * Helper function for 8002. Creates field storage if it doesn't exist.
+ *
+ * @param array $entitytypes_fields
+ *
+ */
+function _ensure_fields(array $entitytypes_fields) {
+  $modulePath = drupal_get_path('module', 'hg_reader');
+  $config_directory = new FileStorage($modulePath . '/config/install');
+
+  foreach ($entitytypes_fields as $entitytype => $bundles) {
+    foreach ($bundles as $bundle => $fields) {
+      foreach ($fields as $field) {
+        $field_storage_name = 'field.storage.' . $entitytype . '.' . $field;
+        $config_record = $config_directory->read($field_storage_name);
+        if (!FieldStorageConfig::loadByName($config_record['entity_type'], $config_record['field_name'])) {
+          FieldStorageConfig::create($config_record)->save();
+        }
+
+        $field_config_name = 'field.field.' . $entitytype . '.' . $bundle . '.' . $field;
+        $config_record = $config_directory->read($field_config_name);
+        if (!FieldConfig::loadByName($config_record['entity_type'], $config_record['bundle'], $config_record['field_name'])) {
+          FieldConfig::create($config_record)->save();
+        }
+      }
+    }
+  }
+}
+
+/**
+ * hg_reader_update_8003
+ *
+ * Rebuilds taxonomy terms for orphaned metadata entities. This should have been
+ * a post update hook but it's been in here for a while so we're sticking with it.
+ */
+function hg_reader_update_8003(&$sandbox) {
+  // news: 'field_hg_keywords', 'field_hg_categories', 'field_hg_news_room_topics'
+  // event: 'field_hg_event_categories', 'field_hg_invited_audience'
+
+  $count_node = 0;
+  $count_tax = 0;
+
+  // Query all hg_reader content types
+  $nids = \Drupal::entityQuery('node')
+      ->condition('type', ['hg_event', 'hg_news'], 'IN')
+      ->execute();
+
+  if (!empty($nids)) {
+    $hg_fields = [
+      'field_hg_keywords' => 'hg_keywords',
+      'field_hg_categories' => 'hg_categories',
+      'field_hg_news_room_topics' => 'hg_news_room_topics',
+      'field_hg_newsroom_topics' => 'hg_newsroom_topics',
+      'field_hg_event_categories' => 'hg_event_categories',
+      'field_hg_invited_audience' => 'hg_invited_audience'
+    ];
+
+    // Now, go into each entity.
+    foreach ($nids as $nid) {
+      $bool_update = false;
+      $node = Node::load($nid);
+
+      if ($node instanceof \Drupal\node\NodeInterface) {
+        foreach ($hg_fields as $hg_field => $hg_field_vocab) {
+          // checking if field exists on entity
+          if ($node->hasField($hg_field)) {
+
+            // loading hg_field_vocab into a vid
+            $vocab_id = Vocabulary::load($hg_field_vocab)->id();
+
+            // Checking field reference value
+            $categories = $node->$hg_field->getValue();
+            if (!empty($categories)) {
+              foreach ($categories as $category) {
+                // Load the taxonomy term based on id
+                $term = Term::load($category['target_id']);
+
+                // Checking vocabulary of term
+		            if (is_null($term)) { continue; }
+                if ($term->bundle() != $vocab_id) {
+                  // Check to see if term exists in the current vocabulary
+                  $term_exists_in_vocab = taxonomy_term_load_multiple_by_name($term->getName(),$vocab_id);
+                  // If empty, then term does not exist in vocab, so build
+                  if(empty($term_exists_in_vocab)){
+                    // VIDs don't match, so recreate term in $vocab_id
+                    $term_new = Term::create([
+                      'name' => $term->getName(),
+                      'vid' => $vocab_id,
+                    ]);
+                    // save term
+                    $term_new->save();
+                    $count_tax++;
+                  }
+                  // Term exists, so ignore and
+                  else {
+                    $term_new = current($term_exists_in_vocab);
+                  }
+
+                  // Finally, replace Tax reference with the newly created entity
+                  // sourced from https://drupal.stackexchange.com/questions/262090/how-do-i-programmatically-delete-a-reference-field-values
+                  $key = array_search(current($category), array_column($categories, key($category)));
+                  $node->get($hg_field)->removeItem($key);
+
+                  // now, replace that relationship
+                  $node->get($hg_field)->appendItem(['target_id' => $term_new->id()]);
+                  \Drupal::logger('hg_reader')->notice('Updated [tid=' . $term_new->id() . ']' . $term_new->getName() . ' for [nid=' . $node->id() . ']' . $node->label());
+                  $bool_update = true;
+                }
+              }
+            }
+          }
+
+          if ($bool_update){
+            // Now, save.
+            $node->save();
+            \Drupal::logger('hg_reader')->notice('Updated [nid=' . $node->id() . ']' . $node->label());
+            $count_node++;
+          }
+        }
+      }
+    }
+  }
+  \Drupal::messenger()->addMessage(t('Recreated <em>@name</em> terms across @count content.', array('@name' => $count_tax, '@count' => $count_node)), 'status');
+}
+
+/**
+ * hg_reader_update_8004
+ *
+ * Support for videos in hg_news
+ */
+function hg_reader_update_8004(&$sandbox) {
+  $config_path = drupal_get_path('module', 'hg_reader') . '/config/install';
+	$source = new FileStorage($config_path);
+	$config_storage = \Drupal::service('config.storage');
+	$config_storage->write('core.entity_form_display.node.hg_news.default', $source->read('core.entity_form_display.node.hg_news.default'));
+}
+
+/**
+ * hg_reader_update_8005
+ *
+ * Modifying default events view and event teaser displays
+ */
+function hg_reader_update_8005(&$sandbox) {
+  $config_path = drupal_get_path('module', 'hg_reader') . '/config/install';
+	$source = new FileStorage($config_path);
+	$config_storage = \Drupal::service('config.storage');
+  $config_storage->write('core.entity_view_display.node.hg_event.teaser', $source->read('core.entity_view_display.node.hg_event.teaser'));
+  $config_storage->write('views.view.hg_events', $source->read('views.view.hg_events'));
+}
+
+/**
+ * hg_reader_update_8006
+ *
+ * Install Twig Tweak, update views, update news teaser.
+ */
+function hg_reader_update_8006(&$sandbox) {
+  \Drupal::service('module_installer')->install(['twig_tweak'], TRUE);
+
+  $config_path = drupal_get_path('module', 'hg_reader') . '/config/install';
+	$source = new FileStorage($config_path);
+	$config_storage = \Drupal::service('config.storage');
+  $config_storage->write('core.entity_view_display.node.hg_news.teaser', $source->read('core.entity_view_display.node.hg_news.teaser'));
+  $config_storage->write('views.view.hg_events', $source->read('views.view.hg_events'));
+  $config_storage->write('views.view.hg_news', $source->read('views.view.hg_news'));
+}
