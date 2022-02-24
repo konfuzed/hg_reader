@@ -1,7 +1,7 @@
 {
-    "name": "gt/hg_reader",
-    "description": "Provides the hg_reader module of course.",
-    "type": "drupal-module",
+    "name": "gtsciences/hg_reader",
+    "description": "GT CoS flavor of the hg_reader",
+    "type": "drupal-custom-module",
     "require": {
       "drupal/twig_tweak": "^3.1"
     }
