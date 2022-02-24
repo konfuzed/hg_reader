@@ -2,6 +2,7 @@
     "name": "gtsciences/hg_reader",
     "description": "GT CoS flavor of the hg_reader",
     "type": "drupal-custom-module",
+    "license": "GPL-2.0-or-later",
     "require": {
       "drupal/twig_tweak": "^3.1"
     }
