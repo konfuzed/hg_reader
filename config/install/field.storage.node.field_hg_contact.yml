@@ -1,4 +1,3 @@
-uuid: 4f4bf75b-2807-48b6-aa8f-77825aacd7a1
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
   module:
     - node
     - text
-_core:
-  default_config_hash: 8QB9hucCwTF5b9I-buDKfRssU6kItfKFGvQFEUV7gFs
 id: node.field_hg_contact
 field_name: field_hg_contact
 entity_type: node

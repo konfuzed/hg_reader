@@ -1,4 +1,3 @@
-uuid: 159c7def-d217-462d-8d0a-f01088c36ce0
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
   module:
     - node
     - options
-_core:
-  default_config_hash: qK2mI2L6ZpfZ2A7_w619btvXgHs98Z6kFHQwInufHcY
 id: node.field_hg_extras
 field_name: field_hg_extras
 entity_type: node

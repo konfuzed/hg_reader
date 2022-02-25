@@ -1,4 +1,3 @@
-uuid: f15b92d0-c947-4cbe-a1c9-feb6a67cc41d
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_video
   module:
     - text
-_core:
-  default_config_hash: YfkJI_0bpqn1tSjolhiEAnEwIoepJa0thJobg2PLFVE
 id: node.hg_video.body
 field_name: body
 entity_type: node

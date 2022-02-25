@@ -1,4 +1,3 @@
-uuid: 893c63f4-cad0-4765-a026-bfdb50068cde
 langcode: en
 status: true
 dependencies:
@@ -13,8 +12,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: 6a1y78_W0xp8Ot5sbXf3DfkNEviOiEsRT82UqlC658I
 id: node.hg_external_news.teaser
 targetEntityType: node
 bundle: hg_external_news

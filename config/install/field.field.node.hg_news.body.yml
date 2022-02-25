@@ -1,4 +1,3 @@
-uuid: 035ba2c4-da6e-4b6a-a255-239dfad30167
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_news
   module:
     - text
-_core:
-  default_config_hash: SSdOp5Ef8fAG0qITZ_aEl7Wox_SWCB4j8yCqWu8yFUc
 id: node.hg_news.body
 field_name: body
 entity_type: node

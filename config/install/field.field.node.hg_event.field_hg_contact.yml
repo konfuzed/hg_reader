@@ -1,4 +1,3 @@
-uuid: 4ec72e91-3c90-470d-84c4-90ce209ceccb
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_event
   module:
     - text
-_core:
-  default_config_hash: gMvkWLpONFRjQJfK5qqg7UxiJzcBdv0ucx_MAX8dgdo
 id: node.hg_event.field_hg_contact
 field_name: field_hg_contact
 entity_type: node

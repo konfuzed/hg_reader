@@ -1,11 +1,8 @@
-uuid: badcb184-8d9d-44eb-836d-aabfdab2a3d0
 langcode: en
 status: true
 dependencies:
   config:
     - node.type.hg_video
-_core:
-  default_config_hash: 3cyzukR_zyvSxthtq7Lt7WaigXpI0DY-QUP3ADW41Co
 id: node.hg_video.promote
 field_name: promote
 entity_type: node

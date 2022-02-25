@@ -1,4 +1,3 @@
-uuid: a8b62f31-28d4-4aa5-98a9-f5f5fabc17c0
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
   module:
     - node
     - taxonomy
-_core:
-  default_config_hash: Hr9Kp3x0MhkqMWDSoDqjcazACo9ttAEN5Of8252AVMg
 id: node.field_hg_keywords
 field_name: field_hg_keywords
 entity_type: node

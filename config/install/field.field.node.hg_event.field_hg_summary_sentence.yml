@@ -1,12 +1,9 @@
-uuid: 2030127d-c913-497b-99c4-8a0187110e80
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_hg_summary_sentence
     - node.type.hg_event
-_core:
-  default_config_hash: Dt8bq1eACfhn7eIYs0FQtw9x_RZZ4W1XSrtP7Wf6SNQ
 id: node.hg_event.field_hg_summary_sentence
 field_name: field_hg_summary_sentence
 entity_type: node

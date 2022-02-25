@@ -1,4 +1,3 @@
-uuid: 5d4687e4-6017-43c9-b13c-98840c6ceac0
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_event
   module:
     - link
-_core:
-  default_config_hash: U4ZYTJyFbseZl7smBN2-VDmaD3DNgRLH-VbAwv09zLA
 id: node.hg_event.field_hg_location_url
 field_name: field_hg_location_url
 entity_type: node

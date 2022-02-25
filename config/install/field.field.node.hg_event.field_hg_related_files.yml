@@ -1,4 +1,3 @@
-uuid: 9fe76c4c-7f81-4f74-bd1e-ff69595b9860
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_event
   module:
     - file
-_core:
-  default_config_hash: kxvHy46xbWMHS6ziKFY3bPe0F0Er096vzp7mDPbQ_F0
 id: node.hg_event.field_hg_related_files
 field_name: field_hg_related_files
 entity_type: node

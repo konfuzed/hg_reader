@@ -1,4 +1,3 @@
-uuid: 1e102e2a-7910-4c24-ba3b-97bfca9aaf76
 langcode: en
 status: true
 dependencies:
@@ -10,8 +9,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: kcB4buoU48ngEkmuqJLzP4-ruLNhJ87sftg-U5rvUA0
 id: node.hg_video.teaser
 targetEntityType: node
 bundle: hg_video

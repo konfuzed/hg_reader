@@ -1,4 +1,3 @@
-uuid: 9526eab3-7933-4c51-a1a3-7d33af5a9143
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
       - hg_reader
   module:
     - node
-_core:
-  default_config_hash: 3y7kZYtHxhgNml32VZWGWu2Wbeo8-pXETMniWhtXaUs
 id: node.field_hg_publication
 field_name: field_hg_publication
 entity_type: node

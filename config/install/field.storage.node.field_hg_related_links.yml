@@ -1,4 +1,3 @@
-uuid: b44d194c-9ea9-40cf-a2b5-9d3ae4f7d3dd
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
   module:
     - link
     - node
-_core:
-  default_config_hash: Z5edfpL3WhTcO0JC8prCtAMpYFYkU_PmffG_43hE29E
 id: node.field_hg_related_links
 field_name: field_hg_related_links
 entity_type: node

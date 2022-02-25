@@ -1,4 +1,3 @@
-uuid: 26b5154a-984c-4af4-aab1-20552d53dcbb
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_event
   module:
     - link
-_core:
-  default_config_hash: ql-Xaw9w1yWtltz6eHko634dWPXHdhDBSeXgDZORGZo
 id: node.hg_event.field_hg_related_links
 field_name: field_hg_related_links
 entity_type: node

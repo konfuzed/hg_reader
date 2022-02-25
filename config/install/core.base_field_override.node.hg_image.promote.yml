@@ -1,11 +1,8 @@
-uuid: b23a94e2-90ab-4b2e-b99c-9be76198de2c
 langcode: en
 status: true
 dependencies:
   config:
     - node.type.hg_image
-_core:
-  default_config_hash: 31IOg16Rpc-sKdh04DsBHnOOJe5RrwF_8BC1o-sOJww
 id: node.hg_image.promote
 field_name: promote
 entity_type: node

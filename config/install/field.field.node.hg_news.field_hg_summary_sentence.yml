@@ -1,12 +1,9 @@
-uuid: 9b71859a-b791-40d8-9081-bdebc8146d20
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_hg_summary_sentence
     - node.type.hg_news
-_core:
-  default_config_hash: hQfRRXwh8ErgZqAWJNjG78iTLMjqcniOX3SV2HXbZfE
 id: node.hg_news.field_hg_summary_sentence
 field_name: field_hg_summary_sentence
 entity_type: node

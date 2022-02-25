@@ -1,4 +1,3 @@
-uuid: 9710a07a-9581-452b-ace2-61ac8298bbfa
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_event
   module:
     - datetime_range
-_core:
-  default_config_hash: WMzzwx6GbzLKC77zw2pUuJ5bM9jjTpG57f-xxCyROD0
 id: node.hg_event.field_hg_event_time
 field_name: field_hg_event_time
 entity_type: node

@@ -1,12 +1,9 @@
-uuid: 895b4c63-4cd5-4aea-b98a-6748d0eb180a
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_hg_location
     - node.type.hg_event
-_core:
-  default_config_hash: CvR0zO9wO78dtWkgJj7jtoDJCM3XZsQc2yQ36UoLkpk
 id: node.hg_event.field_hg_location
 field_name: field_hg_location
 entity_type: node

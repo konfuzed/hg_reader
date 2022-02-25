@@ -1,12 +1,9 @@
-uuid: 684adeba-2f32-4958-b4eb-ccc61379b9c3
 langcode: en
 status: true
 dependencies:
   enforced:
     module:
       - hg_reader
-_core:
-  default_config_hash: 9fi7YzXQ2WDUy2PM1fZ0wk-LRyHCezv4PXqkOLw6PWE
 name: 'Mercury boilerplate'
 type: hg_boilerplate
 description: 'A chunk of standard text that can be included in other pieces of content.'

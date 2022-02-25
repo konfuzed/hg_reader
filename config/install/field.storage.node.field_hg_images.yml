@@ -1,4 +1,3 @@
-uuid: 8f88ecdb-4e2b-450e-81db-fa808a3d4e2e
 langcode: en
 status: true
 dependencies:
@@ -9,8 +8,6 @@ dependencies:
     - file
     - image
     - node
-_core:
-  default_config_hash: lpg53OtnVex99vxL37_k8rvgzyCRGJ6viAgpxQs1c1w
 id: node.field_hg_images
 field_name: field_hg_images
 entity_type: node

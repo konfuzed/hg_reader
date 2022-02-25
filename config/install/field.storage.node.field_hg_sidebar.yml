@@ -1,4 +1,3 @@
-uuid: 70a3530e-c2c4-4e72-b5d2-0b378df867f8
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
   module:
     - node
     - text
-_core:
-  default_config_hash: UcI05DIBtBIW_NiHjadKazKQ0GcxGPhPdoLtjThrrpo
 id: node.field_hg_sidebar
 field_name: field_hg_sidebar
 entity_type: node

@@ -1,4 +1,3 @@
-uuid: 38dd4cf5-a828-4472-80c4-04477510a817
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
       - hg_reader
   module:
     - node
-_core:
-  default_config_hash: setWUAFUhABuRd3cQ-3lb_YME4heMfvVPFDBZ_ybDr4
 id: node.field_hg_location
 field_name: field_hg_location
 entity_type: node

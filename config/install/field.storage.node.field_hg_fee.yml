@@ -1,4 +1,3 @@
-uuid: 04cb7823-a299-4896-93dd-cea6380fe58f
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
       - hg_reader
   module:
     - node
-_core:
-  default_config_hash: 8eafLIACSSBot4icBYEQeQ9mTyQDfdaly5-DEjB0DVQ
 id: node.field_hg_fee
 field_name: field_hg_fee
 entity_type: node

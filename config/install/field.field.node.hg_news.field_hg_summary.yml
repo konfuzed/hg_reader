@@ -1,4 +1,3 @@
-uuid: 38a58394-6347-4b15-9025-d9cf085f2b2f
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_news
   module:
     - text
-_core:
-  default_config_hash: ynIcf8KgkOS8AVpyrL231YORAEzdGuqHxBOrZ56uIm4
 id: node.hg_news.field_hg_summary
 field_name: field_hg_summary
 entity_type: node

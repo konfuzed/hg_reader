@@ -1,4 +1,3 @@
-uuid: 254fb2c7-5a9c-49f7-9f9b-e9bfbcc03bbc
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_external_news
   module:
     - datetime
-_core:
-  default_config_hash: iMPE4JWFJ2K1FF8gz-LVR4qBsQneEG-jWw06n9QAjEo
 id: node.hg_external_news.field_hg_dateline
 field_name: field_hg_dateline
 entity_type: node

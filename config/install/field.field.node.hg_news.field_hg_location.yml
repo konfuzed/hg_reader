@@ -1,12 +1,9 @@
-uuid: 2115427c-a430-4873-b6f3-32cc414e509e
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_hg_location
     - node.type.hg_news
-_core:
-  default_config_hash: ztrasR9BtKhjRWOu1erjurwu-GWrGp8z1LBjfjn4Z-k
 id: node.hg_news.field_hg_location
 field_name: field_hg_location
 entity_type: node

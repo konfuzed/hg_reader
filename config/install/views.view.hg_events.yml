@@ -1,4 +1,3 @@
-uuid: d4ed297f-deca-4aae-8033-7e793be923dc
 langcode: en
 status: true
 dependencies:
@@ -9,8 +8,6 @@ dependencies:
     - datetime
     - node
     - user
-_core:
-  default_config_hash: CD6yqQfo9yZkosBcrA8oraftFUPsjz_ftqNWU0TZI7w
 id: hg_events
 label: 'Mercury events'
 module: views

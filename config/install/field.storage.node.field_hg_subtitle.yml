@@ -1,4 +1,3 @@
-uuid: d281ee24-73cb-4734-bba5-eda0aabf146c
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
       - hg_reader
   module:
     - node
-_core:
-  default_config_hash: 8J34cwpmRjYQbQN2IdrzqshWJ9soo2hx4GfyJOp9soY
 id: node.field_hg_subtitle
 field_name: field_hg_subtitle
 entity_type: node

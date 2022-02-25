@@ -1,4 +1,3 @@
-uuid: 14e3baca-a152-43d7-b21f-2c8bec43899d
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
   module:
     - file
     - node
-_core:
-  default_config_hash: WsUWLNRZOP7GsNKNwlrjFdNQSYhbGs7kvmjC_PQuAe0
 id: node.field_hg_related_files
 field_name: field_hg_related_files
 entity_type: node

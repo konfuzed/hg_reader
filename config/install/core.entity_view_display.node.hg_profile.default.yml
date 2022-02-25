@@ -1,4 +1,3 @@
-uuid: 240b40b6-1026-47ca-a835-9127f5662335
 langcode: en
 status: true
 dependencies:
@@ -37,8 +36,6 @@ dependencies:
     - options
     - text
     - user
-_core:
-  default_config_hash: QF9Om6jB76gEdk6bmCaHhqSt6YHLZZNkeR74HbKeswI
 id: node.hg_profile.default
 targetEntityType: node
 bundle: hg_profile

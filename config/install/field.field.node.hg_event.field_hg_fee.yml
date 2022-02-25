@@ -1,12 +1,9 @@
-uuid: a12c06a1-965a-4ccf-9199-de8e8ac2aaad
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_hg_fee
     - node.type.hg_event
-_core:
-  default_config_hash: s5XKjFGxbHCuKgkvJcX9i6mvHdG7nDcwS3EsEUJ9vxk
 id: node.hg_event.field_hg_fee
 field_name: field_hg_fee
 entity_type: node

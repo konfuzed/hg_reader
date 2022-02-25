@@ -1,4 +1,3 @@
-uuid: ed10d351-764e-44fc-9977-4ab59f5d0da1
 langcode: en
 status: true
 dependencies:
@@ -11,8 +10,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: XAHnCXDbG9MxolFvUmx3jsxgwrIhHaBFRwd8bO-0yUc
 id: node.hg_boilerplate.default
 targetEntityType: node
 bundle: hg_boilerplate

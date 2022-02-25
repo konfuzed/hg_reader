@@ -1,4 +1,3 @@
-uuid: c2d38e44-699d-42ad-911f-76498fdbdc43
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_boilerplate
   module:
     - text
-_core:
-  default_config_hash: JWp_y6w0dQex1GSNaELJEwaeNh1EC2H4fjMO3wYx2Js
 id: node.hg_boilerplate.body
 field_name: body
 entity_type: node

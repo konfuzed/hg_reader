@@ -1,4 +1,3 @@
-uuid: 1f7bcb78-63dd-44fc-b251-79dfbcb888d9
 langcode: en
 status: true
 dependencies:
@@ -77,8 +76,6 @@ third_party_settings:
         required_fields: true
       label: Contact
       region: content
-_core:
-  default_config_hash: JDK1kEI8MURjO2Zo5KWaWwdiLqupzmPyKMU0pb9H3kU
 id: node.hg_profile.default
 targetEntityType: node
 bundle: hg_profile

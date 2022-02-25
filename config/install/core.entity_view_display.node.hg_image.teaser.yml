@@ -1,4 +1,3 @@
-uuid: 97e4b895-cd42-43c6-a9f4-ec863350c9dc
 langcode: en
 status: true
 dependencies:
@@ -10,8 +9,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: jNY5uehAW7Tqk3k_cCXjU6f9irWvIWzuIVg4mkcdCo0
 id: node.hg_image.teaser
 targetEntityType: node
 bundle: hg_image

@@ -1,11 +1,8 @@
-uuid: 255b215d-6e4c-49fb-8479-51670cd316b9
 langcode: en
 status: true
 dependencies:
   config:
     - node.type.hg_external_news
-_core:
-  default_config_hash: ZTnXdNElkUw6tXRe-aSRyW5Be-xMolrdyiqBDCQ6dPw
 id: node.hg_external_news.promote
 field_name: promote
 entity_type: node

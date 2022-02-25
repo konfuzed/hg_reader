@@ -1,4 +1,3 @@
-uuid: c39294bc-8d70-480a-9037-f57bbe2b67e8
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_external_news
   module:
     - file
-_core:
-  default_config_hash: F--9ful2k2RUV1G12-s4KbJOLk2PVu3LNBPpN9qcshY
 id: node.hg_external_news.field_hg_related_files
 field_name: field_hg_related_files
 entity_type: node

@@ -1,4 +1,3 @@
-uuid: e32186b4-e8ed-473a-b3e6-031e357870cc
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
   module:
     - datetime
     - node
-_core:
-  default_config_hash: y-9ro5AnrzCCEX4-7crUPQLOqgUgeYQc3hKy8Bve6YU
 id: node.field_hg_dateline
 field_name: field_hg_dateline
 entity_type: node

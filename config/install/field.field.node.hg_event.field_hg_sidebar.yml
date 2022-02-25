@@ -1,4 +1,3 @@
-uuid: c100c62f-0e60-4fba-acf7-fb584cc126ac
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.hg_event
   module:
     - text
-_core:
-  default_config_hash: 87sDtqeNO9wsr2Q2NFd0FKuXxwZzGI4nKSH40Ftw-dc
 id: node.hg_event.field_hg_sidebar
 field_name: field_hg_sidebar
 entity_type: node

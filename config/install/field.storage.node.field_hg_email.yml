@@ -1,4 +1,3 @@
-uuid: 8af24505-22cb-4f41-9f74-ab46f988828f
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
       - hg_reader
   module:
     - node
-_core:
-  default_config_hash: JzpsxvksjQZH72KeAkXU-4jZjZxD2IlCBBXFr3C6oxs
 id: node.field_hg_email
 field_name: field_hg_email
 entity_type: node
